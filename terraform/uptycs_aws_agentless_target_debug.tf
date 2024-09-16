@@ -10,5 +10,4 @@ module "uptycs_aws_agentless_target" {
 
   integration_prefix = local.uptycs_aws_agentless_target.integrationPrefix
   scanner_account_id = local.uptycs_aws_agentless_target.scannerAccountId
-  additional_tags    = local.uptycs_aws_agentless_target.additionalTags
 }
