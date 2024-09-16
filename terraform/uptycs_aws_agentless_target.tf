@@ -16,6 +16,7 @@ resource "aws_iam_role" "upt_aws_agentless_target" {
 
 resource "aws_iam_role_policy" "upt_aws_agentless_target_policy" {
   role = aws_iam_role.upt_aws_agentless_target.id
+  name = "UptycsAgentlessTargetPolicy"
 
   policy = jsonencode({
     Version = "2012-10-17"
