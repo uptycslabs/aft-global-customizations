@@ -1,8 +1,3 @@
-locals {
-  integrationPrefix  = "girionpremtf"
-  scannerAccountId   = "794888992839"
-}  // Update above values as required
-
 resource "aws_iam_role" "upt_aws_agentless_target" {
   name = "${local.integrationPrefix}-agentless-target"
 
