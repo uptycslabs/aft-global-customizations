@@ -1,12 +1,17 @@
+locals "uptycs_target_variables" {
+  integrationPrefix  = "girionpremtf"
+  scannerAccountId   = "794888992839"
+}  // Update above values as required
+
 resource "aws_iam_role" "upt_aws_agentless_target" {
-  name = "girionpremtf-agentless-target"
+  name = "${local.uptycs_target_variables.integrationPrefix}-agentless-target"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
       Effect = "Allow"
       Principal = {
-        AWS = "arn:aws:iam::794888992839:root"
+        AWS = "arn:aws:iam::${local.uptycs_target_variables.scannerAccountId}:root"
       }
       Action = "sts:AssumeRole"
       Condition = {}
@@ -47,7 +52,7 @@ resource "aws_iam_role_policy" "upt_aws_agentless_target_policy" {
       {
         Condition = {
           "StringEquals" = {
-            "aws:ResourceTag/CreatedByUptycs" = "girionpremtf-agentless"
+            "aws:ResourceTag/CreatedByUptycs" = "${local.uptycs_target_variables.integrationPrefix}-agentless"
           }
         }
         Action = [
