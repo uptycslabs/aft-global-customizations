@@ -1,3 +1,19 @@
+locals {
+  uptycs_aws_agentless_target = {
+    integrationPrefix  = "girionpremtf"
+    scannerAccountId   = "794888992839"
+  }  // Update above values as required
+}
+
+module "uptycs_aws_agentless_target" {
+  source = "https://uptycs-terraform-dev.s3.amazonaws.com/terraform-aws-uptycs.zip//modules/agentless_integration/target"
+
+  integration_prefix = local.uptycs_aws_agentless_target.integrationPrefix
+  scanner_account_id = local.uptycs_aws_agentless_target.scannerAccountId
+}
+
+/*
+// Below is manual way of creating role which defined permissions
 resource "aws_iam_role" "upt_aws_agentless_target" {
   name = "${local.uptycs_aws_agentless_target.integrationPrefix}-agentless-target"
 
@@ -78,3 +94,4 @@ resource "aws_iam_role_policy" "upt_aws_agentless_target_policy" {
     ]
   })
 }
+*/
