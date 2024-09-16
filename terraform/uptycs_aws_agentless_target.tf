@@ -1,12 +1,12 @@
 resource "aws_iam_role" "upt_aws_agentless_target" {
-  name = "${local.integrationPrefix}-agentless-target"
+  name = "${local.uptycs_aws_agentless_target.integrationPrefix}-agentless-target"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
       Effect = "Allow"
       Principal = {
-        AWS = "arn:aws:iam::${local.scannerAccountId}:root"
+        AWS = "arn:aws:iam::${local.uptycs_aws_agentless_target.scannerAccountId}:root"
       }
       Action = "sts:AssumeRole"
       Condition = {}
@@ -47,7 +47,7 @@ resource "aws_iam_role_policy" "upt_aws_agentless_target_policy" {
       {
         Condition = {
           "StringEquals" = {
-            "aws:ResourceTag/CreatedByUptycs" = "${local.integrationPrefix}-agentless"
+            "aws:ResourceTag/CreatedByUptycs" = "${local.uptycs_aws_agentless_target.integrationPrefix}-agentless"
           }
         }
         Action = [
